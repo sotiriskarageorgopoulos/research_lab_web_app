@@ -1,0 +1,19 @@
+@import url('../../index.css');
+
+.course-container {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    color: var(--clr-primary-5);
+}
+
+.course-program,
+.course-ects {
+    font-weight: 700;
+}
+
+.course-desc {
+    text-align: justify;
+    background-color: var(--clr-grey-8);
+    color: var(--clr-black);
+    padding: 2%;
+}

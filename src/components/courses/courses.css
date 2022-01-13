@@ -1,0 +1,25 @@
+@import url('../../index.css');
+
+.courses-container {
+    margin-top: 8%;
+    margin-bottom: 10%;
+    color: var(--clr-primary-5)
+}
+
+.course-ects{
+    font-weight: 700;
+}
+
+.breadcrumb-style:hover {
+    color: var(--clr-primary-5);
+}
+
+.courses {
+    width: 50%;
+    margin: 5% auto 5% auto;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 2%;
+    background-color: var(--clr-primary-5);
+    border-radius: var(--radius);
+}

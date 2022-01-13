@@ -1,0 +1,46 @@
+@import url('../../index.css');
+
+.research-projects-container {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    color: var(--clr-primary-3)
+}
+
+.active-project {
+    color: var(--clr-green-dark);
+    font-weight: 700;
+}
+
+.completed-project {
+    color: var(--clr-gold);
+    font-weight: 700;
+}
+
+.research-projects {
+    width: 100%;
+    margin: 5% auto 5% auto;
+    background-color: var(--clr-primary-5);
+    padding: 2%;
+    border: 2px ridge var(--clr-primary-6);
+    border-radius: var(--radius);
+}
+
+.research-projects-list-item {
+    color: var(--clr-grey-10);
+    font-weight: 700; 
+    font-size: var(--medium-font-size);
+    list-style: none;
+    text-align: center;
+}
+
+.forms-style {
+    width: 50%;
+    margin: 5% auto 5% auto;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 2%;
+}
+
+.year-assignment {
+    font-weight: 700;
+}

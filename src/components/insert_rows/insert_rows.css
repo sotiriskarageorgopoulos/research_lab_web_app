@@ -1,0 +1,15 @@
+@import url('../../index.css');
+
+.insert-rows-container {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    color: var(--clr-primary-5);
+}
+
+.forms-style {
+    width: 100%;
+    margin: 0% auto 5% auto;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 2%;
+}

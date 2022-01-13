@@ -1,0 +1,37 @@
+@import url('../../index.css');
+
+.publications-container {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    color: var(--clr-primary-5);
+}
+
+.publication-link {
+    color: var(--clr-primary-5);
+    text-decoration: none;
+}
+
+.publication-link:hover {
+   color: var(--clr-primary-4)
+}
+
+.forms-style {
+    width: 100%;
+    margin: 0% auto 5% auto;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 2%;
+}
+
+.publications {
+    background-color: var(--clr-primary-5);
+    color: var(--clr-grey-10);
+    padding: 2%;
+    border-radius: var(--radius);
+    font-size: var(--big-font-size);
+}
+
+.publications-list {
+    list-style: none;
+    font-size: var(--medium-font-size);
+}

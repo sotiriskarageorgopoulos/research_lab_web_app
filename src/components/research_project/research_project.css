@@ -1,0 +1,29 @@
+@import url('../../index.css');
+
+.research-project-container {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    color: var(--clr-primary-5)
+}
+
+.active-project {
+    color: var(--clr-green-dark);
+    font-weight: 700;
+}
+
+.completed-project {
+    color: var(--clr-gold);
+    font-weight: 700;
+}
+
+.year-assignment {
+    font-weight: 700;
+}
+
+.desc-style {
+    background-color: var(--clr-grey-9);
+    color: var(--clr-black);
+    margin: 0% auto 0% auto;
+    padding: 2%;
+    text-align: justify;
+}

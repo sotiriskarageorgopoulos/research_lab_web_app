@@ -1,0 +1,50 @@
+@import url('../../index.css');
+
+.carousel-container {
+    margin-top: 5%;
+}
+
+.research-laboratory-title {
+    color: var(--clr-primary-5);
+    font-size: var(--x-big-font-size);
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+    margin-bottom: 4%;
+}
+
+.second-container {
+    background-color: var(--clr-primary-7);
+    padding: 2%;
+}
+
+.announcements-title {
+    display:flex;
+    justify-content: center;
+    color: var(--clr-grey-10)
+}
+
+.map-style {
+    width: 100%;
+    height: 80vh;
+}
+
+.list-item-style {
+    background-color: var(--clr-grey-10);
+    display: flex;
+    justify-content: flex-end;
+    flex-flow: column;
+    color: var(--clr-grey-1);
+    font-weight: 500;
+}
+
+.announcements-link {
+    color: var(--clr-grey-10);
+    font-size: var(--medium-font-size);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.announcements-link:hover {
+    color: var(--clr-grey-8);
+}

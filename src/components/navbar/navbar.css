@@ -1,0 +1,15 @@
+@import url('../../index.css');
+
+.app-bar-style {
+    background-color: var(--clr-primary-5) !important;
+}
+
+.link {
+    text-decoration: unset;
+    color: unset;
+}
+
+.link:hover {
+    text-decoration: unset;
+    color: unset;
+}

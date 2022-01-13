@@ -1,0 +1,15 @@
+@import url('../../index.css');
+
+.announcements-container {
+    margin-top: 8%;
+    margin-bottom: 10%;
+}
+
+.list-item-style {
+    background-color: var(--clr-grey-10);
+    display: flex;
+    justify-content: flex-end;
+    flex-flow: column;
+    color: var(--clr-grey-1);
+    font-weight: 500;
+}

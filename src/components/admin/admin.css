@@ -1,0 +1,7 @@
+@import url('./admin.css');
+
+.admin-container {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    color: var(--clr-primary-5);
+}

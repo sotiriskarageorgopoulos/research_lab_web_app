@@ -1,0 +1,7 @@
+@import url('../../index.css');
+
+.delete-container {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    color: var(--clr-primary-5)
+}

@@ -1,0 +1,59 @@
+@import url('../../index.css');
+
+.res-members-container {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    color: var(--clr-primary-5);
+}
+
+.res-members-list-item {
+    padding: 2%;
+}
+
+.img-style {
+    width: 150px;
+    height: 150px;
+    border: 5px solid var(--clr-primary-5);
+    border-radius: var(--radius);
+}
+
+.res_member_info {
+    color: var(--clr-primary-5);
+    text-decoration: none;
+    margin-bottom: 5%;
+}
+
+.res_member_info:hover {
+    color: var(--clr-primary-4);
+}
+
+.forms-style {
+    width: 100%;
+    margin: 5% auto 5% auto;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 2%;
+}
+
+.submit-btn-style {
+    width: 50%;
+}
+
+.number-of-members {
+    width: 50%;
+    margin: 5% auto 5% auto;
+    background-color: var(--clr-primary-5);
+    padding: 2%;
+    border: 2px ridge var(--clr-primary-6);
+    border-radius: var(--radius);
+}
+
+.each-number-of-member {
+    text-align: center;
+    color: var(--clr-grey-10);
+    font-weight: 700; 
+}
+
+.breadcrumb-style:hover {
+    color: var(--clr-primary-5);
+}

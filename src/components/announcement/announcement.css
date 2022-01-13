@@ -1,0 +1,13 @@
+@import url('../../index.css');
+
+.announcement-container {
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.announcement-content {
+    background-color: var(--clr-grey-8);
+    color: var(--clr-black);
+    text-align: justify;
+    padding: 2%;
+}
