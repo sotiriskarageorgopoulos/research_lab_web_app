@@ -15,6 +15,7 @@ public interface ResearchMemberDAOInterface<T> {
     public T getResearcherByCourse(String courseId);
     public T getMembersOfProject(String rpid);
     public T getMemberBySurname(String surname);
+    public T getMembersByLevel(String level);
     public T getMember(String academicId);
     public void postMember(JsonObject obj);
     public void deleteMember(String academicId);

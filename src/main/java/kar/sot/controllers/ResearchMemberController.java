@@ -222,4 +222,17 @@ public class ResearchMemberController {
             return arr.toString();
         return new JSONArray().toString();
     }
+
+    public static String getMembersByLevel(Request req, Response res) {
+        ResearchMemberDAO rmDAO = new ResearchMemberDAO();
+        String level = req.params(":level");
+        if(level == null) {
+            halt(400,"Malformed Request");
+        }
+        JSONArray arr = rmDAO.getMembersByLevel(level);
+        res.type("application/json");
+        if(arr != null)
+            return arr.toString();
+        return new JSONArray().toString();
+    }
 }

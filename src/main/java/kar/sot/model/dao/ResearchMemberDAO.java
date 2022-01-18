@@ -633,6 +633,58 @@ public class ResearchMemberDAO implements ResearchMemberDAOInterface<JSONArray> 
     }
 
     @Override
+    public JSONArray getMembersByLevel(String level) {
+        JSONArray arr = new JSONArray();
+        CallableStatement cs = null;
+        ResultSet rs = null;
+        String sql = "SELECT RM.academic_id, RM.r_name, RM.r_surname, RM.email, RM.tel, RM.image\n" +
+                "FROM Research_Member AS RM\n" +
+                "WHERE RM.level = ?;";
+        try {
+            cs = StatementCreator.create(sql);
+            cs.setString(1,level);
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                String academicId = rs.getString("academic_id");
+                String tel = rs.getString("tel");
+                String email = rs.getString("email");
+                String image = rs.getString("image");
+                String name = rs.getString("r_name");
+                String surname = rs.getString("surname");
+                JSONObject obj = new JSONObject();
+                obj.put("academicId",academicId);
+                obj.put("tel",tel);
+                obj.put("email",email);
+                obj.put("image",image);
+                obj.put("name",name);
+                obj.put("surname",surname);
+                obj.put("level",level);
+                arr.put(obj);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if(cs != null) {
+                try {
+                    cs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return arr;
+    }
+
+    @Override
     public JSONArray getMember(String academicId) {
         JSONArray arr = new JSONArray();
         CallableStatement cs = null;

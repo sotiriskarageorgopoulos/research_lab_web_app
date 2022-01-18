@@ -100,6 +100,7 @@ public class Server {
             get("/getLab/:lid", (req, res) -> LabController.getLab(req, res));
             get("/getPublication/:pid", (req, res) -> PublicationController.getPublication(req, res));
             get("/getAnnouncement/:aid", (req, res) -> AnnouncementController.getAnnouncement(req, res));
+            get("/getMembersByLevel/:level", (req,res) -> ResearchMemberController.getMembersByLevel(req,res));
         });
 
         options("/*",
