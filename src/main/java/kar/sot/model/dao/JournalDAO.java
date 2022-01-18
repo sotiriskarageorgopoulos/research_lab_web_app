@@ -9,7 +9,6 @@ import org.json.JSONObject;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
 public class JournalDAO implements JournalDAOInterface<JSONArray> {
     @Override
@@ -84,13 +83,13 @@ public class JournalDAO implements JournalDAOInterface<JSONArray> {
     }
 
     @Override
-    public void deleteJournal(JsonObject obj) {
-        if(obj != null) {
+    public void deleteJournal(String jid) {
+        if(jid != null) {
             CallableStatement cs = null;
             String sql = "DELETE FROM Journal WHERE jid = ?";
             try {
                 cs = StatementCreator.create(sql);
-                cs.setString(1,obj.get("jid").getAsString());
+                cs.setString(1,jid);
                 cs.execute();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();

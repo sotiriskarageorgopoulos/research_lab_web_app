@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 public class LabDAO implements LabDAOInterface<JSONArray> {
     @Override
-    public JSONArray getLabsOfMember(String academicId) {
+    public JSONArray getLabOfMember(String academicId) {
         CallableStatement cs = null;
         ResultSet rs = null;
         JSONArray arr = new JSONArray();
@@ -131,13 +131,13 @@ public class LabDAO implements LabDAOInterface<JSONArray> {
     }
 
     @Override
-    public void deleteLab(JsonObject obj) {
-        if (obj != null) {
+    public void deleteLab(String lid) {
+        if (lid != null) {
             CallableStatement cs = null;
             String sql = "DELETE FROM Lab WHERE lid = ?";
             try {
                 cs = StatementCreator.create(sql);
-                cs.setString(1,obj.get("lid").getAsString());
+                cs.setString(1,lid);
                 cs.execute();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();

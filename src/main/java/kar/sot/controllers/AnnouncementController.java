@@ -33,11 +33,11 @@ public class AnnouncementController {
 
     public static String delAnnouncement(Request req,Response res) {
         AnnouncementDAO announcementDAO = new AnnouncementDAO();
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String aid = req.params(":aid");
+        if(aid == null) {
             halt(400,"Malformed Request!");
         }
-        announcementDAO.deleteAnnouncement(obj);
+        announcementDAO.deleteAnnouncement(aid);
         return "The announcement deleted successfully...";
     }
 
@@ -72,12 +72,12 @@ public class AnnouncementController {
 
     public static String getAnnouncement(Request req, Response res) {
         AnnouncementDAO announcementDAO = new AnnouncementDAO();
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String aid = req.params(":aid");
+        if(aid == null) {
             halt(400,"Malformed Request");
         }
         res.type("application/json");
-        JSONArray arr = announcementDAO.getAnnouncement(obj.get("aid").getAsString());
+        JSONArray arr = announcementDAO.getAnnouncement(aid);
         if(arr != null)
             return arr.toString();
         return new JSONArray().toString();

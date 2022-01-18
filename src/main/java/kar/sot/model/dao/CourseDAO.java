@@ -173,13 +173,13 @@ public class CourseDAO implements CourseDAOInterface<JSONArray> {
     }
 
     @Override
-    public void deleteCourse(JsonObject obj) {
-        if(obj != null) {
+    public void deleteCourse(String cid) {
+        if(cid != null) {
             CallableStatement cs = null;
             String sql = "DELETE FROM Course WHERE cid = ?";
             try {
                 cs = StatementCreator.create(sql);
-                cs.setString(1,obj.get("cid").getAsString());
+                cs.setString(1,cid);
                 cs.execute();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();

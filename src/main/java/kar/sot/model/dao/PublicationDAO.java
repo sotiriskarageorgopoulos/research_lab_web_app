@@ -336,13 +336,13 @@ public class PublicationDAO implements PublicationDAOInterface<JSONArray> {
     }
 
     @Override
-    public void deletePublication(JsonObject obj) {
-        if(obj != null) {
+    public void deletePublication(String pid) {
+        if(pid != null) {
             CallableStatement cs = null;
             String sql = "DELETE FROM Publication WHERE pid = ?";
             try {
                 cs = StatementCreator.create(sql);
-                cs.setString(1,obj.get("pid").getAsString());
+                cs.setString(1,pid);
                 cs.execute();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();

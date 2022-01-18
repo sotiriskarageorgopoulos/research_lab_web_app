@@ -31,11 +31,11 @@ public class JournalController {
 
     public static String deleteJournal(Request req, Response res) {
         JournalDAO journalDAO = new JournalDAO();
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String jid = req.params(":jid");
+        if(jid == null) {
             halt(400,"Malformed Request...");
         }
-        journalDAO.deleteJournal(obj);
+        journalDAO.deleteJournal(jid);
         return "The journal deleted successfully...";
     }
 
@@ -51,11 +51,11 @@ public class JournalController {
 
     public static String getJournalsForPublication(Request req, Response res) {
         JournalDAO journalDAO = new JournalDAO();
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String pid = req.params(":pid");
+        if(pid == null) {
             halt(400,"Malformed Request...");
         }
-        JSONArray arr = journalDAO.getJournalsForPublication(obj.get("pid").getAsString());
+        JSONArray arr = journalDAO.getJournalsForPublication(pid);
         res.type("application/json");
         if(arr != null)
             return arr.toString();

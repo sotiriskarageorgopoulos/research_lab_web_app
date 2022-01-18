@@ -33,21 +33,21 @@ public class AcademicConferenceController {
 
     public static String delAcademicConf(Request req, Response res) {
         AcademicConferenceDAO acDAO = new AcademicConferenceDAO();
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String aid = req.params(":acid");
+        if(aid == null) {
             halt(400, "Malformed Request");
         }
-        acDAO.deleteAcademicConference(obj);
+        acDAO.deleteAcademicConference(aid);
         return "Academic conference is deleted successfully...";
     }
 
     public static String getConferencesForPublication(Request req, Response res) {
         AcademicConferenceDAO acDAO = new AcademicConferenceDAO();
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String pid = req.params("pid");
+        if(pid == null) {
             halt(400, "Malformed Request");
         }
-        JSONArray arr = acDAO.getConferencesForPublication(obj.get("pid").getAsString());
+        JSONArray arr = acDAO.getConferencesForPublication(pid);
         res.type("application/json");
         if(arr != null)
             return arr.toString();

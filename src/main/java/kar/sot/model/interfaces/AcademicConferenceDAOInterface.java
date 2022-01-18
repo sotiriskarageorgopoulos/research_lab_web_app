@@ -6,6 +6,6 @@ import org.json.JSONObject;
 public interface AcademicConferenceDAOInterface<T> {
     public T getConferencesForPublication(String pid);
     public void insertAcademicConference(JsonObject ac);
-    public void deleteAcademicConference(JsonObject obj);
+    public void deleteAcademicConference(String aid);
     public T getAllAcademicConfs();
 }

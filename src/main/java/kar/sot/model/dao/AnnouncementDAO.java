@@ -25,6 +25,7 @@ public class AnnouncementDAO implements AnnouncementDAOInterface<JSONArray> {
 
             while (rs.next()) {
                 JSONObject obj = new JSONObject();
+                obj.put("aid", rs.getString("aid"));
                 obj.put("title", rs.getString("title"));
                 obj.put("date", rs.getTimestamp("a_date"));
                 arr.put(obj);
@@ -65,6 +66,7 @@ public class AnnouncementDAO implements AnnouncementDAOInterface<JSONArray> {
 
             while (rs.next()) {
                 JSONObject obj = new JSONObject();
+                obj.put("aid", rs.getString("aid"));
                 obj.put("title", rs.getString("title"));
                 obj.put("date", rs.getTimestamp("a_date"));
                 arr.put(obj);
@@ -166,13 +168,13 @@ public class AnnouncementDAO implements AnnouncementDAOInterface<JSONArray> {
     }
 
     @Override
-    public void deleteAnnouncement(JsonObject obj) {
-        if (obj != null) {
+    public void deleteAnnouncement(String aid) {
+        if (aid != null) {
             CallableStatement cs = null;
             String sql = "DELETE FROM Announcement WHERE aid = ?";
             try {
                 cs = StatementCreator.create(sql);
-                cs.setString(1, obj.get("aid").getAsString());
+                cs.setString(1, aid);
                 cs.execute();
             } catch (SQLException e) {
                 e.printStackTrace();

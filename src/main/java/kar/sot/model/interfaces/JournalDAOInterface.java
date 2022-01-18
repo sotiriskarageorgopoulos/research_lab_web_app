@@ -7,6 +7,6 @@ public interface JournalDAOInterface<T> {
     public T getJournalsForPublication(String pid);
     public T getAllJournals();
     public void postJournal(JsonObject obj);
-    public void deleteJournal(JsonObject obj);
+    public void deleteJournal(String jid);
     public void updJournalWebPage(JsonObject obj);
 }

@@ -31,11 +31,11 @@ public class LabController {
 
     public static String deleteLab(Request req, Response res) {
         LabDAO labDAO = new LabDAO();
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String lid = req.params(":lid");
+        if(lid == null) {
             halt(400,"Malformed Request!");
         }
-        labDAO.deleteLab(obj);
+        labDAO.deleteLab(lid);
         return "Lab deleted successfully...";
     }
 
@@ -69,13 +69,13 @@ public class LabController {
         return "Lab web page updated successfully...";
     }
 
-    public static String getLabsOfMember(Request req, Response res) {
+    public static String getLabOfMember(Request req, Response res) {
         LabDAO labDAO = new LabDAO();
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String academicId = req.params(":academicId");
+        if(academicId == null) {
             halt(400,"Malformed Request");
         }
-        JSONArray arr = labDAO.getLabsOfMember(obj.get("academicId").getAsString());
+        JSONArray arr = labDAO.getLabOfMember(academicId);
         res.type("application/json");
         if(arr != null)
             return arr.toString();
@@ -84,11 +84,11 @@ public class LabController {
 
     public static String getLab(Request req, Response res) {
         LabDAO labDAO = new LabDAO();
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String lid = req.params(":lid");
+        if(lid == null) {
             halt(400, "Malformed Request");
         }
-        JSONArray arr = labDAO.getLab(obj.get("lid").getAsString());
+        JSONArray arr = labDAO.getLab(lid);
         res.type("application/json");
         if(arr != null)
             return arr.toString();

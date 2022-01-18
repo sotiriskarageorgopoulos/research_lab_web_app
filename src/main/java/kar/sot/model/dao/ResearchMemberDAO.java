@@ -719,13 +719,13 @@ public class ResearchMemberDAO implements ResearchMemberDAOInterface<JSONArray> 
     }
 
     @Override
-    public void deleteMember(JsonObject obj) {
-        if(obj != null) {
+    public void deleteMember(String academicId) {
+        if(academicId != null) {
             CallableStatement cs = null;
             String sql = "DELETE FROM Research_Member WHERE academic_id = ?";
             try {
                 cs = StatementCreator.create(sql);
-                cs.setString(1,obj.get("academicId").getAsString());
+                cs.setString(1,academicId);
                 cs.execute();
             } catch (SQLException e) {
                 e.printStackTrace();

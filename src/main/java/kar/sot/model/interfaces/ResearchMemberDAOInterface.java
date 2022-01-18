@@ -14,10 +14,10 @@ public interface ResearchMemberDAOInterface<T> {
     public T getExternalMemberWithMaxProjects();
     public T getResearcherByCourse(String courseId);
     public T getMembersOfProject(String rpid);
-    public T getMemberBySurname(String surname);//23
-    public T getMember(String academicId); //40
+    public T getMemberBySurname(String surname);
+    public T getMember(String academicId);
     public void postMember(JsonObject obj);
-    public void deleteMember(JsonObject obj);
+    public void deleteMember(String academicId);
     public void updateShortCV(JsonObject obj);
     public void updateLevel(JsonObject obj);
     public void updateImage(JsonObject obj);

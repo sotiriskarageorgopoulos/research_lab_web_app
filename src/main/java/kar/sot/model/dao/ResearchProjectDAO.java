@@ -276,13 +276,13 @@ public class ResearchProjectDAO implements ResearchProjectDAOInterface<JSONArray
     }
 
     @Override
-    public void deleteProject(JsonObject obj) {
-        if (obj != null) {
+    public void deleteProject(String rpid) {
+        if (rpid != null) {
             CallableStatement cs = null;
             String sql = "DELETE FROM Research_Project WHERE rpid = ?";
             try {
                 cs = StatementCreator.create(sql);
-                cs.setString(1, obj.get("rpid").getAsString());
+                cs.setString(1, rpid);
                 cs.execute();
             } catch (SQLException e) {
                 e.printStackTrace();

@@ -11,5 +11,5 @@ public interface PublicationDAOInterface<T> {
     public T getPublication(String pid);
     public T getPublications();
     public void postPublication(JsonObject obj);
-    public void deletePublication(JsonObject obj);
+    public void deletePublication(String pid);
 }

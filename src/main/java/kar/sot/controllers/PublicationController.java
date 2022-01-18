@@ -31,11 +31,11 @@ public class PublicationController {
 
     public static String delPublication(Request req, Response res) {
         PublicationDAO pDAO = new PublicationDAO();
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String pid = req.params(":pid");
+        if(pid == null) {
             halt(400,"Malformed Request!");
         }
-        pDAO.deletePublication(obj);
+        pDAO.deletePublication(pid);
         return "Publication deleted successfully...";
     }
 
@@ -59,12 +59,11 @@ public class PublicationController {
 
     public static String getPublicationsByResearcherInDescOrder(Request req, Response res) {
         PublicationDAO pDAO = new PublicationDAO();
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String academicId = req.params(":academicId");
+        if(academicId == null) {
             halt(400, "Malformed Request");
         }
         res.type("application/json");
-        String academicId = obj.get("academicId").getAsString();
         JSONArray arr = pDAO.getPublicationsByResearcher(academicId,"desc");
         if (arr != null)
             return arr.toString();
@@ -73,12 +72,12 @@ public class PublicationController {
 
     public static String getPublicationsByResearcherInAscOrder(Request req, Response res) {
         PublicationDAO pDAO = new PublicationDAO();
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String academicId = req.params(":academicId");
+        if(academicId == null) {
             halt(400, "Malformed Request");
         }
         res.type("application/json");
-        String academicId = obj.get("academicId").getAsString();
+
         JSONArray arr = pDAO.getPublicationsByResearcher(academicId,"asc");
         if (arr != null)
             return arr.toString();
@@ -87,12 +86,12 @@ public class PublicationController {
 
     public static String getPublicationsPerJournal(Request req, Response res) {
         PublicationDAO pDAO = new PublicationDAO();
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String academicId = req.params(":academicId");
+        if(academicId == null) {
             halt(400,"Malformed Request");
         }
         res.type("application/json");
-        JSONArray arr = pDAO.getPublicationsPerJournal(obj.get("academicId").getAsString());
+        JSONArray arr = pDAO.getPublicationsPerJournal(academicId);
         if(arr != null)
             return arr.toString();
         return new JSONArray().toString();
@@ -101,12 +100,11 @@ public class PublicationController {
     public static String getCommonPublications(Request req, Response res) {
         PublicationDAO pDAO = new PublicationDAO();
         res.type("application/json");
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String firstAcademicId = req.params(":firstAcademicId");
+        String secondAcademicId = req.params(":secondAcademicId");
+        if(firstAcademicId == null || secondAcademicId == null) {
             halt(400,"Malformed Request");
         }
-        String firstAcademicId = obj.get("firstAcademicId").getAsString();
-        String secondAcademicId = obj.get("secondAcademicId").getAsString();
         JSONArray arr = pDAO.getCommonPublications(firstAcademicId,secondAcademicId);
         if(arr != null)
             return arr.toString();
@@ -115,12 +113,12 @@ public class PublicationController {
 
     public static String getPublication(Request req, Response res) {
         PublicationDAO pDAO = new PublicationDAO();
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String pid = req.params(":pid");
+        if(pid == null) {
             halt(400,"Malformed Request");
         }
         res.type("application/json");
-        JSONArray arr = pDAO.getPublication(obj.get("pid").getAsString());
+        JSONArray arr = pDAO.getPublication(pid);
         if(arr != null)
             return arr.toString();
         return new JSONArray().toString();

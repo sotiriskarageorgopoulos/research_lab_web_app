@@ -9,7 +9,7 @@ public interface AnnouncementDAOInterface<T> {
     public T getFiveRecentAnnouncements();
     public T getAnnouncement(String aid);
     public void insertAnnouncement(JsonObject obj);
-    public void deleteAnnouncement(JsonObject obj);
+    public void deleteAnnouncement(String aid);
     public void updateAnnouncementTitle(JsonObject obj);
     public void updateAnnouncementContent(JsonObject obj);
 }

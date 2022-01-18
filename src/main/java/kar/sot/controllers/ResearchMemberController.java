@@ -31,11 +31,11 @@ public class ResearchMemberController {
 
     public static String delResMember(Request req, Response res) {
         ResearchMemberDAO rmDAO = new ResearchMemberDAO();
-        JsonObject obj = new Gson().fromJson(req.body(), JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String academicId = req.params(":academicId");
+        if(academicId == null) {
             halt(400, "Malformed Request");
         }
-        rmDAO.deleteMember(obj);
+        rmDAO.deleteMember(academicId);
         return "Research Member deleted successfully...";
     }
 
@@ -173,11 +173,11 @@ public class ResearchMemberController {
 
     public static String getResearcherByCourse(Request req, Response res) {
         ResearchMemberDAO rmDAO = new ResearchMemberDAO();
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String cid = req.params(":cid");
+        if(cid == null) {
             halt(400,"Malformed Request");
         }
-        JSONArray arr = rmDAO.getResearcherByCourse(obj.get("courseId").getAsString());
+        JSONArray arr = rmDAO.getResearcherByCourse(cid);
         res.type("application/json");
         if(arr != null)
             return arr.toString();
@@ -186,11 +186,11 @@ public class ResearchMemberController {
 
     public static String getMembersOfProject(Request req, Response res) {
         ResearchMemberDAO rmDAO = new ResearchMemberDAO();
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String rpid = req.params(":rpid");
+        if(rpid == null) {
             halt(400,"Malformed Request");
         }
-        JSONArray arr = rmDAO.getMembersOfProject(obj.get("rpid").getAsString());
+        JSONArray arr = rmDAO.getMembersOfProject(rpid);
         res.type("application/json");
         if(arr != null)
             return arr.toString();
@@ -199,11 +199,11 @@ public class ResearchMemberController {
 
     public static String getMemberBySurname(Request req, Response res) {
         ResearchMemberDAO rmDAO = new ResearchMemberDAO();
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String surname = req.params(":surname");
+        if(surname == null) {
             halt(400,"Malformed Request");
         }
-        JSONArray arr = rmDAO.getMemberBySurname(obj.get("surname").getAsString());
+        JSONArray arr = rmDAO.getMemberBySurname(surname);
         res.type("application/json");
         if(arr != null)
             return arr.toString();
@@ -212,11 +212,11 @@ public class ResearchMemberController {
 
     public static String getMember(Request req, Response res) {
         ResearchMemberDAO rmDAO = new ResearchMemberDAO();
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String academicId = req.params(":academicId");
+        if(academicId == null) {
             halt(400,"Malformed Request");
         }
-        JSONArray arr = rmDAO.getMember(obj.get("academicId").getAsString());
+        JSONArray arr = rmDAO.getMember(academicId);
         res.type("application/json");
         if(arr != null)
             return arr.toString();

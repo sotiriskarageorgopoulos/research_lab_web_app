@@ -32,11 +32,11 @@ public class CourseController {
 
     public static String delCourse(Request req, Response res) {
         CourseDAO courseDAO = new CourseDAO();
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String cid = req.params(":cid");
+        if(cid == null) {
             halt(400,"Malformed Request!");
         }
-        courseDAO.deleteCourse(obj);
+        courseDAO.deleteCourse(cid);
         return "Course deleted successfully...";
     }
 
@@ -72,12 +72,12 @@ public class CourseController {
 
     public static String getCourseByLevel(Request req, Response res) {
         CourseDAO courseDAO = new CourseDAO();
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String level = req.params(":level");
+        if(level == null) {
             halt(400,"Malformed Request!");
         }
         res.type("application/json");
-        JSONArray arr = courseDAO.getCourseByLevel(obj.get("level").getAsString());
+        JSONArray arr = courseDAO.getCourseByLevel(level);
         if(arr != null)
             return arr.toString();
         return new JSONArray().toString();
@@ -85,12 +85,12 @@ public class CourseController {
 
     public static String getCourse(Request req, Response res) {
         CourseDAO courseDAO = new CourseDAO();
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String cid = req.params(":cid");
+        if(cid == null) {
             halt(400,"Malformed Request!");
         }
         res.type("application/json");
-        JSONArray arr = courseDAO.getCourse(obj.get("cid").getAsString());
+        JSONArray arr = courseDAO.getCourse(cid);
         if(arr != null)
             return arr.toString();
         return new JSONArray().toString();

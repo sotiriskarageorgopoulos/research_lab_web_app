@@ -89,13 +89,13 @@ public class AcademicConferenceDAO implements AcademicConferenceDAOInterface<JSO
     }
 
     @Override
-    public void deleteAcademicConference(JsonObject obj) {
-        if(obj != null) {
+    public void deleteAcademicConference(String aid) {
+        if(aid != null) {
             CallableStatement cs = null;
             String sql = "DELETE FROM Academic_Conference WHERE acid = ?";
             try {
                 cs = StatementCreator.create(sql);
-                cs.setString(1,obj.get("acid").getAsString());
+                cs.setString(1,aid);
                 cs.execute();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();

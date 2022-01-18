@@ -31,11 +31,11 @@ public class ResearchProjectController {
 
     public static String deleteProject(Request req, Response res) {
         ResearchProjectDAO rpDao = new ResearchProjectDAO();
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String rpid = req.params(":rpid");
+        if(rpid == null) {
             halt(400,"Malformed Request!");
         }
-        rpDao.deleteProject(obj);
+        rpDao.deleteProject(rpid);
         return "Project deleted successfully...";
     }
 
@@ -78,11 +78,10 @@ public class ResearchProjectController {
 
     public static String getProjectByResearcher(Request req, Response res) {
         ResearchProjectDAO rpDAO = new ResearchProjectDAO();
-        JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-        if(obj.entrySet().size() == 0) {
+        String academicId = req.params(":academicId");
+        if(academicId == null) {
             halt(400,"Malformed Request!");
         }
-        String academicId = obj.get("academicId").getAsString();
         JSONArray arr = rpDAO.getProjectByResearcher(academicId);
         res.type("application/json");
         if(arr != null)
@@ -90,13 +89,12 @@ public class ResearchProjectController {
         return new JSONArray().toString();
     }
 
-   public static String getProjectByResearcherPerDate(Request req, Response res) {
+    public static String getProjectByResearcherPerDate(Request req, Response res) {
        ResearchProjectDAO rpDAO = new ResearchProjectDAO();
-       JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);
-       if(obj.entrySet().size() == 0) {
+       String academicId = req.params(":academicId");
+       if(academicId == null) {
            halt(400,"Malformed Request!");
        }
-       String academicId = obj.get("academicId").getAsString();
        JSONArray arr = rpDAO.getProjectByResearcherPerDate(academicId);
        res.type("application/json");
        if(arr != null)
