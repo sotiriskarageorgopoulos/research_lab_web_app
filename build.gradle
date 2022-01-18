@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id "com.palantir.docker" version "0.32.0"
+    id "com.palantir.docker-run" version "0.32.0"
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+group 'res.lab.api'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    // https://mvnrepository.com/artifact/com.sparkjava/spark-core
+    implementation group: 'com.sparkjava', name: 'spark-core', version: '2.9.3'
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.25'
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.26'
+    // https://mvnrepository.com/artifact/org.json/json
+    implementation group: 'org.json', name: 'json', version: '20211205'
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.9'
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+shadowJar {
+    manifest {
+        attributes 'Main-Class': 'kar.sot.Server'
+    }
+}
+
+docker {
+    name "${project.name}:${project.version}"
+    files './build/libs/research_lab_api-1.0-all.jar'
+}
+
+dockerRun {
+    name "${project.name}"
+    image "${project.name}:${project.version}"
+    ports '4568:4568'
+    clean true
+}
+
+
