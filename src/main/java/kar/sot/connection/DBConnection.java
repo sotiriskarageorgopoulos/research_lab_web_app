@@ -15,7 +15,7 @@ public class DBConnection {
 
     public Connection connect() throws SQLException, ClassNotFoundException {
         Class.forName(jbcDriver);
-        String url = "jdbc:mysql://localhost:3306/dblab?autoReconnect=false&useSSL=false&allowPublicKeyRetrieval=true";
+        String url = "jdbc:mysql://lab_db:3306/dblab?autoReconnect=false&useSSL=false&allowPublicKeyRetrieval=true";
         return  DriverManager.getConnection(url,user,password);
     }
 
