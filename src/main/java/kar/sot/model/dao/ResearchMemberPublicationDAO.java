@@ -33,6 +33,7 @@ public class ResearchMemberPublicationDAO implements ResearchMemberPublicationDA
         }finally {
             if(rs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     rs.close();
                 }
                 catch (SQLException ex) {
@@ -68,6 +69,7 @@ public class ResearchMemberPublicationDAO implements ResearchMemberPublicationDA
                 e.printStackTrace();
             } finally {
                 try {
+                    StatementCreator.closeConnection();
                     cs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();

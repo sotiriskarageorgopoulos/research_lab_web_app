@@ -26,6 +26,7 @@ public class PublicationDAO implements PublicationDAOInterface<JSONArray> {
             while (rs.next()) {
                 JSONObject obj = new JSONObject();
                 obj.put("title",rs.getString("title"));
+                obj.put("date",Timestamp.valueOf(rs.getString("p_date")));
                 arr.put(obj);
             }
         } catch (SQLException e) {
@@ -42,6 +43,7 @@ public class PublicationDAO implements PublicationDAOInterface<JSONArray> {
             }
             if(rs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     rs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -65,6 +67,7 @@ public class PublicationDAO implements PublicationDAOInterface<JSONArray> {
             while (rs.next()) {
                 JSONObject obj = new JSONObject();
                 obj.put("title",rs.getString("title"));
+                obj.put("date",Timestamp.valueOf(rs.getString("p_date")));
                 arr.put(obj);
             }
         } catch (SQLException e) {
@@ -81,6 +84,7 @@ public class PublicationDAO implements PublicationDAOInterface<JSONArray> {
             }
             if(rs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     rs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -124,6 +128,7 @@ public class PublicationDAO implements PublicationDAOInterface<JSONArray> {
 
             if(rs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     rs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -165,6 +170,7 @@ public class PublicationDAO implements PublicationDAOInterface<JSONArray> {
             }
             if(rs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     rs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -201,6 +207,7 @@ public class PublicationDAO implements PublicationDAOInterface<JSONArray> {
             if(cs != null){
                 try {
                     cs.close();
+                    StatementCreator.closeConnection();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -244,6 +251,7 @@ public class PublicationDAO implements PublicationDAOInterface<JSONArray> {
         } finally {
             if(rs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     rs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -291,6 +299,7 @@ public class PublicationDAO implements PublicationDAOInterface<JSONArray> {
         finally {
             if(cs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     cs.close();
                 }catch (SQLException ex) {
                     ex.printStackTrace();
@@ -327,6 +336,7 @@ public class PublicationDAO implements PublicationDAOInterface<JSONArray> {
                 e.printStackTrace();
             } finally {
                 try {
+                    StatementCreator.closeConnection();
                     cs.close();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
@@ -351,6 +361,7 @@ public class PublicationDAO implements PublicationDAOInterface<JSONArray> {
             } finally {
                 if(cs != null) {
                     try {
+                        StatementCreator.closeConnection();
                         cs.close();
                     } catch (SQLException e) {
                         e.printStackTrace();

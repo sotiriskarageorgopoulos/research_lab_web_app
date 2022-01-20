@@ -34,6 +34,7 @@ public class StatisticsDAO implements StatisticsInterfaceDAO<JSONArray> {
             if(rs != null) {
                 try {
                     rs.close();
+                    StatementCreator.closeConnection();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -73,6 +74,7 @@ public class StatisticsDAO implements StatisticsInterfaceDAO<JSONArray> {
             if(rs != null) {
                 try {
                     rs.close();
+                    StatementCreator.closeConnection();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -111,6 +113,7 @@ public class StatisticsDAO implements StatisticsInterfaceDAO<JSONArray> {
         } finally {
             if(rs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     rs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -151,6 +154,7 @@ public class StatisticsDAO implements StatisticsInterfaceDAO<JSONArray> {
         } finally {
             if(rs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     rs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -191,6 +195,7 @@ public class StatisticsDAO implements StatisticsInterfaceDAO<JSONArray> {
         } finally {
             if(rs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     rs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -231,6 +236,7 @@ public class StatisticsDAO implements StatisticsInterfaceDAO<JSONArray> {
         } finally {
             if(rs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     rs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -270,6 +276,7 @@ public class StatisticsDAO implements StatisticsInterfaceDAO<JSONArray> {
         } finally {
             if(rs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     rs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -310,6 +317,7 @@ public class StatisticsDAO implements StatisticsInterfaceDAO<JSONArray> {
         } finally {
             if(rs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     rs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -349,6 +357,7 @@ public class StatisticsDAO implements StatisticsInterfaceDAO<JSONArray> {
         } finally {
             if(rs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     rs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -389,6 +398,7 @@ public class StatisticsDAO implements StatisticsInterfaceDAO<JSONArray> {
         } finally {
             if(rs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     rs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -428,6 +438,7 @@ public class StatisticsDAO implements StatisticsInterfaceDAO<JSONArray> {
         } finally {
             if(rs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     rs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();

@@ -35,6 +35,7 @@ public class PublicationJournalDAO implements PublicationJournalDAOInteface<JSON
         } finally {
             if (rs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     rs.close();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
@@ -69,6 +70,7 @@ public class PublicationJournalDAO implements PublicationJournalDAOInteface<JSON
             } finally {
                 if(cs != null) {
                     try {
+                        StatementCreator.closeConnection();
                         cs.close();
                     } catch (SQLException e) {
                         e.printStackTrace();

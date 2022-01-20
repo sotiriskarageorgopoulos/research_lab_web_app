@@ -38,7 +38,7 @@ public class Server {
             delete("/delCourse/:cid", (req, res) -> CourseController.delCourse(req, res));
             delete("/delJournal/:jid", (req, res) -> JournalController.deleteJournal(req, res));
             delete("/delLab/:lid", (req, res) -> LabController.deleteLab(req, res));
-            delete("/deletePublication", (req, res) -> PublicationController.delPublication(req, res));
+            delete("/deletePublication/:pid", (req, res) -> PublicationController.delPublication(req, res));
             delete("/delResMember/:academicId", (req, res) -> ResearchMemberController.delResMember(req, res));
             delete("/delProject/:rpid", (req, res) -> ResearchProjectController.deleteProject(req, res));
             put("/updCourseTitle", (req, res) -> CourseController.updateCourse(req, res));
@@ -101,6 +101,9 @@ public class Server {
             get("/getPublication/:pid", (req, res) -> PublicationController.getPublication(req, res));
             get("/getAnnouncement/:aid", (req, res) -> AnnouncementController.getAnnouncement(req, res));
             get("/getMembersByLevel/:level", (req,res) -> ResearchMemberController.getMembersByLevel(req,res));
+            get("/getExternalMembers", (req,res) -> ResearchMemberController.getExternalMembers(req,res));
+            get("/getProjectWithMaxIncome",(req,res) -> ResearchProjectController.getProjectWithMaxIncome(req,res));
+            get("/getProjectWithMinIncome",(req,res) -> ResearchProjectController.getProjectWithMinIncome(req,res));
         });
 
         options("/*",

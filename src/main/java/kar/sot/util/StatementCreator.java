@@ -7,9 +7,15 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class StatementCreator {
+    private static Connection con = null;
+
     public static CallableStatement create(String sql) throws SQLException, ClassNotFoundException {
         DBConnection dbCon = new DBConnection("root","02121999");
-        Connection con = dbCon.connect();
+        con = dbCon.connect();
         return con.prepareCall(sql);
+    }
+
+    public static void closeConnection() throws SQLException {
+        con.close();
     }
 }

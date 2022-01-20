@@ -45,6 +45,7 @@ public class AnnouncementDAO implements AnnouncementDAOInterface<JSONArray> {
             if (cs != null) {
                 try {
                     cs.close();
+                    StatementCreator.closeConnection();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
@@ -86,6 +87,7 @@ public class AnnouncementDAO implements AnnouncementDAOInterface<JSONArray> {
             if (cs != null) {
                 try {
                     cs.close();
+                    StatementCreator.closeConnection();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
@@ -129,6 +131,7 @@ public class AnnouncementDAO implements AnnouncementDAOInterface<JSONArray> {
             if (cs != null) {
                 try {
                     cs.close();
+                    StatementCreator.closeConnection();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
@@ -159,6 +162,7 @@ public class AnnouncementDAO implements AnnouncementDAOInterface<JSONArray> {
                 if (cs != null) {
                     try {
                         cs.close();
+                        StatementCreator.closeConnection();
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                     }
@@ -180,6 +184,15 @@ public class AnnouncementDAO implements AnnouncementDAOInterface<JSONArray> {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
+            } finally {
+                if(cs != null) {
+                    try {
+                        cs.close();
+                        StatementCreator.closeConnection();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
     }
@@ -202,6 +215,7 @@ public class AnnouncementDAO implements AnnouncementDAOInterface<JSONArray> {
                 if (cs != null) {
                     try {
                         cs.close();
+                        StatementCreator.closeConnection();
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
@@ -228,6 +242,7 @@ public class AnnouncementDAO implements AnnouncementDAOInterface<JSONArray> {
                 if (cs != null) {
                     try {
                         cs.close();
+                        StatementCreator.closeConnection();
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }

@@ -19,6 +19,24 @@ public class ResearchProjectController {
         return new JSONArray().toString();
     }
 
+    public static String getProjectWithMaxIncome(Request req, Response res) {
+        ResearchProjectDAO rpDao = new ResearchProjectDAO();
+        res.type("application/json");
+        JSONArray arr = rpDao.getProjectWithMaxIncome();
+        if(arr != null)
+            return  arr.toString();
+        return new JSONArray().toString();
+    }
+
+    public static String getProjectWithMinIncome(Request req, Response res) {
+        ResearchProjectDAO rpDao = new ResearchProjectDAO();
+        res.type("application/json");
+        JSONArray arr = rpDao.getProjectWithMinIncome();
+        if(arr != null)
+            return  arr.toString();
+        return new JSONArray().toString();
+    }
+
     public static String postProject(Request req, Response res) {
         ResearchProjectDAO rpDao = new ResearchProjectDAO();
         JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);

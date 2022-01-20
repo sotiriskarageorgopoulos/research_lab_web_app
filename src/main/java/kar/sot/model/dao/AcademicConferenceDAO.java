@@ -40,6 +40,7 @@ public class AcademicConferenceDAO implements AcademicConferenceDAOInterface<JSO
             if(cs != null) {
                 try {
                     cs.close();
+                    StatementCreator.closeConnection();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -80,6 +81,7 @@ public class AcademicConferenceDAO implements AcademicConferenceDAOInterface<JSO
                 if(cs != null) {
                     try {
                         cs.close();
+                        StatementCreator.closeConnection();
                     }catch (SQLException ex) {
                         ex.printStackTrace();
                     }
@@ -104,6 +106,7 @@ public class AcademicConferenceDAO implements AcademicConferenceDAOInterface<JSO
             } finally {
                 try {
                     cs.close();
+                    StatementCreator.closeConnection();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -148,6 +151,7 @@ public class AcademicConferenceDAO implements AcademicConferenceDAOInterface<JSO
              if(cs != null) {
                  try {
                      cs.close();
+                     StatementCreator.closeConnection();
                  }catch (SQLException ex) {
                      ex.printStackTrace();
                  }

@@ -235,4 +235,13 @@ public class ResearchMemberController {
             return arr.toString();
         return new JSONArray().toString();
     }
+
+    public static String getExternalMembers(Request req, Response res) {
+        ResearchMemberDAO rmDAO = new ResearchMemberDAO();
+        res.type("application/json");
+        JSONArray arr = rmDAO.getExternalMembers();
+        if (arr != null)
+            return arr.toString();
+        return new JSONArray().toString();
+    }
 }

@@ -637,7 +637,7 @@ public class ResearchMemberDAO implements ResearchMemberDAOInterface<JSONArray> 
         JSONArray arr = new JSONArray();
         CallableStatement cs = null;
         ResultSet rs = null;
-        String sql = "SELECT RM.academic_id, RM.r_name, RM.r_surname, RM.email, RM.tel, RM.image\n" +
+        String sql = "SELECT *\n" +
                 "FROM Research_Member AS RM\n" +
                 "WHERE RM.level = ?;";
         try {
@@ -650,7 +650,7 @@ public class ResearchMemberDAO implements ResearchMemberDAOInterface<JSONArray> 
                 String email = rs.getString("email");
                 String image = rs.getString("image");
                 String name = rs.getString("r_name");
-                String surname = rs.getString("surname");
+                String surname = rs.getString("r_surname");
                 JSONObject obj = new JSONObject();
                 obj.put("academicId",academicId);
                 obj.put("tel",tel);
@@ -689,7 +689,7 @@ public class ResearchMemberDAO implements ResearchMemberDAOInterface<JSONArray> 
         JSONArray arr = new JSONArray();
         CallableStatement cs = null;
         ResultSet rs = null;
-        String sql = "SELECT RM.r_name, RM.r_surname, RM.level, RM.email, RM.tel, RM.image\n" +
+        String sql = "SELECT RM.r_name, RM.r_surname, RM.level, RM.email, RM.tel, RM.image, RM.short_cv,RM.web_page\n" +
                 "FROM Research_Member AS RM\n" +
                 "WHERE RM.academic_id = ?;";
         try {
@@ -703,6 +703,8 @@ public class ResearchMemberDAO implements ResearchMemberDAOInterface<JSONArray> 
                 String image = rs.getString("image");
                 String name = rs.getString("r_name");
                 String level = rs.getString("level");
+                String webPage = rs.getString("web_page");
+                String shortCV = rs.getString("short_cv");
                 JSONObject obj = new JSONObject();
                 obj.put("academicId",academicId);
                 obj.put("tel",tel);
@@ -711,6 +713,8 @@ public class ResearchMemberDAO implements ResearchMemberDAOInterface<JSONArray> 
                 obj.put("name",name);
                 obj.put("surname",surname);
                 obj.put("level",level);
+                obj.put("webPage",webPage);
+                obj.put("shortCV",shortCV);
                 arr.put(obj);
             }
         } catch (SQLException e) {
@@ -730,6 +734,58 @@ public class ResearchMemberDAO implements ResearchMemberDAOInterface<JSONArray> 
                     rs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
+                }
+            }
+        }
+        return arr;
+    }
+
+    @Override
+    public JSONArray getExternalMembers() {
+        JSONArray arr = new JSONArray();
+        String sql = "SELECT * FROM Research_Member\n" +
+                    "WHERE is_external_member = 1";
+        CallableStatement cs = null;
+        ResultSet rs = null;
+
+        try {
+            cs = StatementCreator.create(sql);
+            rs = cs.executeQuery();
+
+            while (rs.next()) {
+                JSONObject obj = new JSONObject();
+                obj.put("academicId", rs.getString("academic_id"));
+                obj.put("lid", rs.getString("lid"));
+                obj.put("name",rs.getString("r_name"));
+                obj.put("surname",rs.getString("r_surname"));
+                obj.put("email",rs.getString("email"));
+                obj.put("webPage",rs.getString("web_page"));
+                obj.put("tel",rs.getString("tel"));
+                obj.put("shortCV",rs.getString("short_cv"));
+                obj.put("level",rs.getString("level"));
+                obj.put("address",rs.getString("address"));
+                obj.put("isExternalMember",rs.getBoolean("is_external_member"));
+                obj.put("image",rs.getString("image"));
+                arr.put(obj);
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }finally {
+            if(rs != null) {
+                try {
+                    rs.close();
+                }catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+            if(cs != null) {
+                try {
+                    cs.close();
+                }catch (SQLException ex) {
+                    ex.printStackTrace();
                 }
             }
         }

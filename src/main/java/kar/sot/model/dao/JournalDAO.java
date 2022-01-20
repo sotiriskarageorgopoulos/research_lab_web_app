@@ -36,6 +36,7 @@ public class JournalDAO implements JournalDAOInterface<JSONArray> {
         } finally {
             if(cs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     cs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -73,6 +74,7 @@ public class JournalDAO implements JournalDAOInterface<JSONArray> {
             }finally {
                 try {
                     if(cs != null) {
+                        StatementCreator.closeConnection();
                         cs.close();
                     }
                 }catch (SQLException ex) {
@@ -98,6 +100,7 @@ public class JournalDAO implements JournalDAOInterface<JSONArray> {
             } finally {
                 try {
                     cs.close();
+                    StatementCreator.closeConnection();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -122,6 +125,7 @@ public class JournalDAO implements JournalDAOInterface<JSONArray> {
             } finally {
                 if(cs != null) {
                     try {
+                        StatementCreator.closeConnection();
                         cs.close();
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -157,6 +161,7 @@ public class JournalDAO implements JournalDAOInterface<JSONArray> {
         } finally {
             if(cs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     cs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();

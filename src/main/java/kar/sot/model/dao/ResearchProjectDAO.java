@@ -21,10 +21,12 @@ public class ResearchProjectDAO implements ResearchProjectDAOInterface<JSONArray
             rs = cs.executeQuery();
             while (rs.next()) {
                 JSONObject obj = new JSONObject();
+                String rpid = rs.getString("rpid");
                 String title = rs.getString("title");
                 boolean isActive = rs.getBoolean("is_active");
                 Date assignmentDate = rs.getDate("assignment_date");
                 obj.put("title",title);
+                obj.put("rpid",rpid);
                 obj.put("isActive",isActive);
                 obj.put("assignmentDate",assignmentDate);
                 arr.put(obj);
@@ -36,6 +38,7 @@ public class ResearchProjectDAO implements ResearchProjectDAOInterface<JSONArray
         } finally {
             if(cs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     cs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -65,6 +68,7 @@ public class ResearchProjectDAO implements ResearchProjectDAOInterface<JSONArray
             rs = cs.executeQuery();
             while (rs.next()) {
                 JSONObject obj = new JSONObject();
+                obj.put("rpid",rs.getString("rpid"));
                 obj.put("title", rs.getString("title"));
                 obj.put("isActive", rs.getBoolean("is_active"));
                 obj.put("assignmentDate", rs.getString("assignment_date"));
@@ -77,6 +81,7 @@ public class ResearchProjectDAO implements ResearchProjectDAOInterface<JSONArray
         } finally {
             if(cs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     cs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -119,6 +124,7 @@ public class ResearchProjectDAO implements ResearchProjectDAOInterface<JSONArray
         } finally {
             if(cs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     cs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -163,7 +169,8 @@ public class ResearchProjectDAO implements ResearchProjectDAOInterface<JSONArray
         } finally {
             if(cs != null) {
                 try {
-                   cs.close();
+                    StatementCreator.closeConnection();
+                    cs.close();
                 } catch (SQLException e) {
                    e.printStackTrace();
                 }
@@ -182,7 +189,7 @@ public class ResearchProjectDAO implements ResearchProjectDAOInterface<JSONArray
     @Override
     public JSONArray getAllProjects() {
         JSONArray arr = new JSONArray();
-        String sql = "SELECT * FROM research_project";
+        String sql = "SELECT * FROM Research_Project";
         CallableStatement cs = null;
         ResultSet rs = null;
         try {
@@ -205,6 +212,95 @@ public class ResearchProjectDAO implements ResearchProjectDAOInterface<JSONArray
         } finally {
             if (rs != null) {
                 try {
+                    StatementCreator.closeConnection();
+                    rs.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (cs != null) {
+                try {
+                    cs.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return arr;
+    }
+
+    @Override
+    public JSONArray getProjectWithMaxIncome() {
+        JSONArray arr = new JSONArray();
+        String sql = "CALL get_statistics(?)";
+        CallableStatement cs = null;
+        ResultSet rs = null;
+        try {
+            cs = StatementCreator.create(sql);
+            cs.setString(1,"project_with_max_income");
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                JSONObject obj = new JSONObject();
+                obj.put("rpid", rs.getString("rpid"));
+                obj.put("title", rs.getString("title"));
+                obj.put("description", rs.getString("rp_description"));
+                obj.put("assignmentDate", rs.getDate("assignment_date"));
+                obj.put("isActive", rs.getBoolean("is_active"));
+                obj.put("income", rs.getBigDecimal("income"));
+                arr.put(obj);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (rs != null) {
+                try {
+                    StatementCreator.closeConnection();
+                    rs.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (cs != null) {
+                try {
+                    cs.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return arr;
+    }
+
+    @Override
+    public JSONArray getProjectWithMinIncome() {
+        JSONArray arr = new JSONArray();
+        String sql = "CALL get_statistics(?)";
+        CallableStatement cs = null;
+        ResultSet rs = null;
+        try {
+            cs = StatementCreator.create(sql);
+            cs.setString(1,"project_with_min_income");
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                JSONObject obj = new JSONObject();
+                obj.put("rpid", rs.getString("rpid"));
+                obj.put("title", rs.getString("title"));
+                obj.put("description", rs.getString("rp_description"));
+                obj.put("assignmentDate", rs.getDate("assignment_date"));
+                obj.put("isActive", rs.getBoolean("is_active"));
+                obj.put("income", rs.getBigDecimal("income"));
+                arr.put(obj);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (rs != null) {
+                try {
+                    StatementCreator.closeConnection();
                     rs.close();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
@@ -241,6 +337,7 @@ public class ResearchProjectDAO implements ResearchProjectDAOInterface<JSONArray
                 e.printStackTrace();
             } finally {
                 try {
+                    StatementCreator.closeConnection();
                     cs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -266,6 +363,7 @@ public class ResearchProjectDAO implements ResearchProjectDAOInterface<JSONArray
             } finally {
                 if (cs != null) {
                     try {
+                        StatementCreator.closeConnection();
                         cs.close();
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -291,6 +389,7 @@ public class ResearchProjectDAO implements ResearchProjectDAOInterface<JSONArray
             } finally {
                 if (cs != null) {
                     try {
+                        StatementCreator.closeConnection();
                         cs.close();
                     } catch (SQLException e) {
                         e.printStackTrace();

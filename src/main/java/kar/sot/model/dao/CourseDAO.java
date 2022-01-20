@@ -47,6 +47,7 @@ public class CourseDAO implements CourseDAOInterface<JSONArray> {
             if (cs != null) {
                 try {
                     cs.close();
+                    StatementCreator.closeConnection();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
@@ -61,7 +62,7 @@ public class CourseDAO implements CourseDAOInterface<JSONArray> {
         CallableStatement cs = null;
         ResultSet rs = null;
         JSONArray arr = new JSONArray();
-        String sql = "SELECT C.title, C.ects\n" +
+        String sql = "SELECT C.title, C.study_level, C.ects\n" +
                     "FROM Course AS C\n" +
                     "WHERE study_level = ?";
         try {
@@ -70,6 +71,7 @@ public class CourseDAO implements CourseDAOInterface<JSONArray> {
             rs = cs.executeQuery();
             while (rs.next()) {
                 JSONObject obj = new JSONObject();
+                obj.put("studyLevel",rs.getString("study_level"));
                 obj.put("title", rs.getString("title"));
                 obj.put("ects", rs.getInt("ects"));
                 arr.put(obj);
@@ -90,6 +92,7 @@ public class CourseDAO implements CourseDAOInterface<JSONArray> {
             if (cs != null) {
                 try {
                     cs.close();
+                    StatementCreator.closeConnection();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
@@ -133,6 +136,7 @@ public class CourseDAO implements CourseDAOInterface<JSONArray> {
             if (cs != null) {
                 try {
                     cs.close();
+                    StatementCreator.closeConnection();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
@@ -164,6 +168,7 @@ public class CourseDAO implements CourseDAOInterface<JSONArray> {
                 if (cs != null) {
                     try {
                         cs.close();
+                        StatementCreator.closeConnection();
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                     }
@@ -188,6 +193,7 @@ public class CourseDAO implements CourseDAOInterface<JSONArray> {
             } finally {
                 if(cs != null) {
                     try {
+                        StatementCreator.closeConnection();
                         cs.close();
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -214,6 +220,7 @@ public class CourseDAO implements CourseDAOInterface<JSONArray> {
             } finally {
                 if(cs != null) {
                     try {
+                        StatementCreator.closeConnection();
                         cs.close();
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -240,6 +247,7 @@ public class CourseDAO implements CourseDAOInterface<JSONArray> {
             } finally {
                 if(cs != null) {
                     try {
+                        StatementCreator.closeConnection();
                         cs.close();
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -266,6 +274,7 @@ public class CourseDAO implements CourseDAOInterface<JSONArray> {
             } finally {
                 if(cs != null) {
                     try {
+                        StatementCreator.closeConnection();
                         cs.close();
                     } catch (SQLException e) {
                         e.printStackTrace();

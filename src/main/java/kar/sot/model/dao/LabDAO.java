@@ -38,6 +38,7 @@ public class LabDAO implements LabDAOInterface<JSONArray> {
         finally {
             if(rs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     rs.close();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
@@ -84,6 +85,7 @@ public class LabDAO implements LabDAOInterface<JSONArray> {
         finally {
             if(rs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     rs.close();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
@@ -121,6 +123,7 @@ public class LabDAO implements LabDAOInterface<JSONArray> {
             } finally {
                 if(cs != null) {
                     try {
+                        StatementCreator.closeConnection();
                         cs.close();
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -145,6 +148,7 @@ public class LabDAO implements LabDAOInterface<JSONArray> {
                 e.printStackTrace();
             } finally {
                 try {
+                    StatementCreator.closeConnection();
                     cs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -188,6 +192,7 @@ public class LabDAO implements LabDAOInterface<JSONArray> {
            }
             if(cs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     cs.close();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
@@ -215,6 +220,7 @@ public class LabDAO implements LabDAOInterface<JSONArray> {
             } finally {
                 if(cs != null) {
                     try {
+                        StatementCreator.closeConnection();
                         cs.close();
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -241,6 +247,7 @@ public class LabDAO implements LabDAOInterface<JSONArray> {
             } finally {
                 if(cs != null) {
                     try {
+                        StatementCreator.closeConnection();
                         cs.close();
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -267,6 +274,7 @@ public class LabDAO implements LabDAOInterface<JSONArray> {
             } finally {
                 if(cs != null) {
                     try {
+                        StatementCreator.closeConnection();
                         cs.close();
                     } catch (SQLException e) {
                         e.printStackTrace();

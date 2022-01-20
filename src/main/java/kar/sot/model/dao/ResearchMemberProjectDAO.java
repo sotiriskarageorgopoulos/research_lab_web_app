@@ -33,6 +33,7 @@ public class ResearchMemberProjectDAO implements ResearchMemberProjectDAOInterfa
         }finally {
             if(rs != null) {
                 try {
+                    StatementCreator.closeConnection();
                     rs.close();
                 }catch (SQLException ex) {
                     ex.printStackTrace();
@@ -66,6 +67,7 @@ public class ResearchMemberProjectDAO implements ResearchMemberProjectDAOInterfa
                 e.printStackTrace();
             } finally {
                 try {
+                    StatementCreator.closeConnection();
                     cs.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
