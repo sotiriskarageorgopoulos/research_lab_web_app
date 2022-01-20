@@ -62,8 +62,8 @@ public class CourseDAO implements CourseDAOInterface<JSONArray> {
         CallableStatement cs = null;
         ResultSet rs = null;
         JSONArray arr = new JSONArray();
-        String sql = "SELECT C.title, C.study_level, C.ects\n" +
-                    "FROM Course AS C\n" +
+        String sql = "SELECT * \n" +
+                    "FROM Course \n" +
                     "WHERE study_level = ?";
         try {
             cs = StatementCreator.create(sql);
@@ -71,6 +71,7 @@ public class CourseDAO implements CourseDAOInterface<JSONArray> {
             rs = cs.executeQuery();
             while (rs.next()) {
                 JSONObject obj = new JSONObject();
+                obj.put("cid",rs.getString("cid"));
                 obj.put("studyLevel",rs.getString("study_level"));
                 obj.put("title", rs.getString("title"));
                 obj.put("ects", rs.getInt("ects"));

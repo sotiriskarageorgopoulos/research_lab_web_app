@@ -109,8 +109,10 @@ public class PublicationDAO implements PublicationDAOInterface<JSONArray> {
                 JSONObject obj = new JSONObject();
                 Timestamp date = Timestamp.valueOf(rs.getString("p_date"));
                 String title = rs.getString("title");
+                String pid = rs.getString("pid");
                 obj.put("title",title);
                 obj.put("date",date);
+                obj.put("pid",pid);
                 arr.put(obj);
             }
         } catch (SQLException e) {
@@ -151,9 +153,11 @@ public class PublicationDAO implements PublicationDAOInterface<JSONArray> {
             while (rs.next()) {
                 JSONObject obj = new JSONObject();
                 String title = rs.getString("title");
+                String pid = rs.getString("pid");
                 int publications = rs.getInt("publications");
                 obj.put("title",title);
                 obj.put("publications",publications);
+                obj.put("pid",pid);
                 arr.put(obj);
             }
         } catch (SQLException e) {
@@ -194,7 +198,9 @@ public class PublicationDAO implements PublicationDAOInterface<JSONArray> {
             while (rs.next()) {
                 String title = rs.getString("title");
                 Timestamp date = Timestamp.valueOf(rs.getString("p_date"));
+                String pid = rs.getString("pid");
                 JSONObject obj = new JSONObject();
+                obj.put("pid",pid);
                 obj.put("title",title);
                 obj.put("date",date);
                 arr.put(obj);
