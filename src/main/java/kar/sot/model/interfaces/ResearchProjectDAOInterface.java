@@ -10,6 +10,7 @@ public interface ResearchProjectDAOInterface<T> {
     public T getAllProjects();
     public T getProjectWithMaxIncome();
     public T getProjectWithMinIncome();
+    public T getProject(String rpid);
     public void deleteProject(String rpid);
     public void postProject(JsonObject obj);
     public void updateProjectProgress(JsonObject obj);

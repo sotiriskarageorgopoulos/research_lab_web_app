@@ -104,6 +104,7 @@ public class Server {
             get("/getExternalMembers", (req,res) -> ResearchMemberController.getExternalMembers(req,res));
             get("/getProjectWithMaxIncome",(req,res) -> ResearchProjectController.getProjectWithMaxIncome(req,res));
             get("/getProjectWithMinIncome",(req,res) -> ResearchProjectController.getProjectWithMinIncome(req,res));
+            get("/getProject/:rpid",(req,res) -> ResearchProjectController.getProject(req,res));
         });
 
         options("/*",

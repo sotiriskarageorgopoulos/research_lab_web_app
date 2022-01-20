@@ -26,8 +26,10 @@ public class AnnouncementDAO implements AnnouncementDAOInterface<JSONArray> {
             while (rs.next()) {
                 JSONObject obj = new JSONObject();
                 obj.put("aid", rs.getString("aid"));
+                obj.put("lid",rs.getString("lid"));
                 obj.put("title", rs.getString("title"));
                 obj.put("date", rs.getTimestamp("a_date"));
+                obj.put("content", rs.getString("content"));
                 arr.put(obj);
             }
         } catch (SQLException ex) {

@@ -37,6 +37,16 @@ public class ResearchProjectController {
         return new JSONArray().toString();
     }
 
+    public static String getProject(Request req, Response res) {
+        ResearchProjectDAO rpDao = new ResearchProjectDAO();
+        res.type("application/json");
+        String rpid = req.params(":rpid");
+        JSONArray arr = rpDao.getProject(rpid);
+        if(arr != null)
+            return  arr.toString();
+        return new JSONArray().toString();
+    }
+
     public static String postProject(Request req, Response res) {
         ResearchProjectDAO rpDao = new ResearchProjectDAO();
         JsonObject obj = new Gson().fromJson(req.body(),JsonObject.class);

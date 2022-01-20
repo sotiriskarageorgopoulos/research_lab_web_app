@@ -318,6 +318,51 @@ public class ResearchProjectDAO implements ResearchProjectDAOInterface<JSONArray
     }
 
     @Override
+    public JSONArray getProject(String rpid) {
+        JSONArray arr = new JSONArray();
+        String sql = "SELECT * FROM Research_Project\n" +
+                    "WHERE rpid = ? ;";
+        CallableStatement cs = null;
+        ResultSet rs = null;
+        try {
+            cs = StatementCreator.create(sql);
+            cs.setString(1,rpid);
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                JSONObject obj = new JSONObject();
+                obj.put("rpid", rs.getString("rpid"));
+                obj.put("title", rs.getString("title"));
+                obj.put("description", rs.getString("rp_description"));
+                obj.put("assignmentDate", rs.getDate("assignment_date"));
+                obj.put("isActive", rs.getBoolean("is_active"));
+                obj.put("income", rs.getBigDecimal("income"));
+                arr.put(obj);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (rs != null) {
+                try {
+                    StatementCreator.closeConnection();
+                    rs.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (cs != null) {
+                try {
+                    cs.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return arr;
+    }
+
+    @Override
     public void postProject(JsonObject obj) {
         if (obj != null) {
             CallableStatement cs = null;
