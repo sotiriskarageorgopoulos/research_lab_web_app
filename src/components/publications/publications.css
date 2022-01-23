@@ -12,7 +12,8 @@
 }
 
 .publication-link:hover {
-   color: var(--clr-primary-4)
+   color: var(--clr-primary-4);
+   cursor: pointer;
 }
 
 .forms-style {

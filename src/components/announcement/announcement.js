@@ -1,21 +1,49 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './announcement.css';
 import { useDispatch } from 'react-redux';
 import { setComponentType } from '../../redux/navbars';
+import axios from 'axios';
 
 const Announcement = () => {
     const dispatch = useDispatch()
+    const [announcement,setAnnouncement] = useState([{
+        title:"",
+        date:"",
+        content:""
+    }])
     dispatch(setComponentType({componentType: 'user'}))
+
+    useEffect(() => {
+        const cancelTokenSource = axios.CancelToken.source();
+        let isSubscribed = true
+
+        if(isSubscribed) {
+            const getAnnouncement = async() => {
+                let path = window.location.pathname
+                let aid = path.split("/")[2]
+                axios.get(`http://localhost:4568/api/getAnnouncement/${aid}`)
+                    .then(res => {
+                        const a = res.data
+                        setAnnouncement(a)
+                })
+            }
+            getAnnouncement()
+        }
+
+        return () => {
+            cancelTokenSource.cancel()
+            isSubscribed = false
+        }
+    },[])
 
     return (
     <div className="container-fluid announcement-container">
         <div className="row">
             <div className="col-sm-2"></div>
             <div className="col-sm-8">
-                <h2>Lorem ipsum dolor sit amet</h2>
-                <p>Date: 14/04/2014</p>
-                <p className="announcement-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus mattis rhoncus urna neque viverra. Sit amet nulla facilisi morbi tempus iaculis urna id. Sed ullamcorper morbi tincidunt ornare massa eget egestas purus viverra. Dictumst quisque sagittis purus sit amet volutpat consequat. Lobortis scelerisque fermentum dui faucibus in ornare quam. Mollis aliquam ut porttitor leo a diam sollicitudin tempor id. Ultricies mi eget mauris pharetra et ultrices. Amet venenatis urna cursus eget nunc scelerisque viverra mauris. Blandit volutpat maecenas volutpat blandit aliquam. Tincidunt tortor aliquam nulla facilisi cras fermentum odio eu feugiat. Turpis egestas pretium aenean pharetra magna ac. Nunc mattis enim ut tellus elementum sagittis vitae. Faucibus vitae aliquet nec ullamcorper sit amet. Bibendum est ultricies integer quis auctor elit. Id volutpat lacus laoreet non curabitur gravida arcu ac tortor. Tellus molestie nunc non blandit massa enim nec. Nulla malesuada pellentesque elit eget gravida cum. Elit pellentesque habitant morbi tristique. Neque laoreet suspendisse interdum consectetur.
-Lectus magna fringilla urna porttitor rhoncus dolor. Mauris rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Integer eget aliquet nibh praesent tristique magna sit.</p>
+                <h2>{announcement[0].title}</h2>
+                <p>Date: {announcement[0].date.slice(0,16)}</p>
+                <p className="announcement-content">{announcement[0].content}</p>
             </div>
             <div className="col-sm-2"></div>
         </div>

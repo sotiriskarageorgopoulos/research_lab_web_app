@@ -52,4 +52,15 @@
     margin: 5% auto 5% auto;
     padding: 2%;
     text-align: justify;
+    width: 100%;
+}
+
+.lab-web-page-link {
+    color: var(--clr-primary-5);
+    text-decoration: none;
+}
+
+.lab-web-page-link:hover {
+    color: var(--clr-primary-4);
+    text-decoration: underline;
 }

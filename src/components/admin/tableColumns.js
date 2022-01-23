@@ -37,7 +37,7 @@ export const labColumns = [{
     minWidth: 170
 },
 {
-    id:'l_description',
+    id:'description',
     label:'l_description',
     minWidth: 170
 },
@@ -52,7 +52,7 @@ export const labColumns = [{
     minWidth: 170
 },
 {
-    id: 'web_page',
+    id: 'webPage',
     label: 'web_page',
     minWidth: 170
 }]
@@ -69,19 +69,20 @@ export const researchProjectColumns = [
         minWidth: 170
     },
     {
-        id: 'rp_description',
+        id: 'description',
         label: 'rp_description',
         minWidth: 200
     },
     {
-        id: 'assignment_date',
+        id: 'assignmentDate',
         label: 'assignment_date',
         minWidth: 170
     },
     {
-        id: 'is_active',
+        id: 'isActive',
         label: 'is_active',
-        minWidth: 170
+        minWidth: 170,
+        format: value => value ? "true" : "false"
     },
     {
         id: 'income',
@@ -93,7 +94,7 @@ export const researchProjectColumns = [
 
 export const researchMemberProjectColumns = [
     {
-        id:'academic_id',
+        id:'academicId',
         label:'academic_id',
         minWidth: 170
     },
@@ -111,7 +112,7 @@ export const courseColumns = [
         minWidth: 170
     },
     {
-        id: 'academic_id',
+        id: 'academicId',
         label: 'academic_id',
         minWidth: 170
     },
@@ -121,7 +122,7 @@ export const courseColumns = [
         minWidth: 170
     },
     {
-        id: 'c_description',
+        id: 'description',
         label: 'c_description',
         minWidth: 170
     },
@@ -131,7 +132,7 @@ export const courseColumns = [
         minWidth: 170
     },
     {
-        id: 'study_level',
+        id: 'studyLevel',
         label: 'study_level',
         minWidth: 170
     }
@@ -139,7 +140,7 @@ export const courseColumns = [
 
 export const researchMemberColumns = [
     {
-        id:'academic_id',
+        id:'academicId',
         label: 'academic_id',
         minWidth: 170
     },
@@ -149,12 +150,12 @@ export const researchMemberColumns = [
         minWidth: 170
     },
     {
-        id:'r_name',
+        id:'name',
         label: 'r_name',
         minWidth: 170
     },
     {
-        id:'r_surname',
+        id:'surname',
         label: 'r_surname',
         minWidth: 170
     },
@@ -164,7 +165,7 @@ export const researchMemberColumns = [
         minWidth: 170
     },
     {
-        id:'web_page',
+        id:'webPage',
         label: 'web_page',
         minWidth: 170
     },
@@ -174,12 +175,12 @@ export const researchMemberColumns = [
         minWidth: 170
     },
     {
-        id:'short_cv',
+        id:'shortCV',
         label: 'short_cv',
         minWidth: 170
     },
     {
-        id:'study_level',
+        id:'level',
         label: 'study_level',
         minWidth: 170
     },
@@ -189,9 +190,10 @@ export const researchMemberColumns = [
         minWidth: 170
     },
     {
-        id:'is_external_member',
+        id:'isExternalMember',
         label: 'is_external_member',
-        minWidth: 170
+        minWidth: 170,
+        format: value => value ? "true" : "false"
     },
     {
         id:'image',
@@ -207,7 +209,7 @@ export const researchMemberPublicationColumns = [
         minWidth: 170
     },
     {
-        id: 'academic_id',
+        id: 'academicId',
         label: 'academic_id',
         minWidth: 170
     }
@@ -261,17 +263,17 @@ export const journalColumns = [
         minWidth: 170
     },
     {
-        id: 'j_description',
+        id: 'description',
         label: 'j_description',
         minWidth: 170
     },
     {
-        id: 'web_page',
+        id: 'webPage',
         label: 'web_page',
         minWidth: 170
     },
     {
-        id: 'scientific_subject',
+        id: 'scientificSubject',
         label: 'scientific_subject',
         minWidth: 170
     }
@@ -302,7 +304,7 @@ export const academicConferenceColumns = [
         minWidth: 170
     },
     {
-        id: 'ac_description',
+        id: 'description',
         label: 'ac_description',
         minWidth: 170
     },
@@ -322,7 +324,7 @@ export const academicConferenceColumns = [
         minWidth: 170
     },
     {
-        id: 'scientific_subject',
+        id: 'scientificSubject',
         label: 'scientific_subject',
         minWidth: 170
     }

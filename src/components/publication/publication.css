@@ -1,0 +1,20 @@
+@import url('../../index.css');
+
+.publication-container {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    color: var(--clr-primary-5);
+}
+
+.pub-date,
+.pub-city {
+    font-weight: 700;
+}
+
+
+.publication-desc {
+    text-align: justify;
+    background-color: var(--clr-grey-8);
+    color: var(--clr-black);
+    padding: 2%;
+}

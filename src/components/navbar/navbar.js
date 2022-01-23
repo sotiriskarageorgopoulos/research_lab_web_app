@@ -40,7 +40,8 @@ const Navbar = () => {
   {
     name: 'Admin',
     path: '/login'
-  }]
+  }
+]
 
   if(componentType === 'user'){
     return <NavbarSetUp pages={pages}/>; 
@@ -62,7 +63,12 @@ const Navbar = () => {
     {
       name: 'Delete',
       path: '/delete_rows'
-    }]
+    },  
+    {
+      name: 'Logout',
+      path: '/'
+    }
+  ]
   
     return <NavbarSetUp pages={pages} />;
   }
@@ -81,6 +87,7 @@ const NavbarSetUp = ({pages}) => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+  
   return(
   <AppBar className="app-bar-style">
       <Container maxWidth="xl">

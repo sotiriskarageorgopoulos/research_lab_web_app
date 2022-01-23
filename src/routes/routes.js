@@ -11,7 +11,7 @@ import ResearchMembers from '../components/research_members/research_members';
 import ResearchMember from '../components/research_member/research_member';
 import ResearchProject from '../components/research_project/research_project';
 import ResearchProjects from '../components/research_projects/research_projects';
-import Announcements from '../components/announcements/annoncements';
+import Announcements from '../components/announcements/announcements';
 import Announcement from '../components/announcement/announcement';
 import InsertRows from '../components/insert_rows/insert_rows';
 import UpdateRows from '../components/update_rows/update_rows';
