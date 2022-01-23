@@ -398,7 +398,7 @@ public class ResearchProjectDAO implements ResearchProjectDAOInterface<JSONArray
             String sql = "UPDATE Research_Project SET is_active = ? WHERE rpid = ?";
             try {
                 cs = StatementCreator.create(sql);
-                cs.setBoolean(1, obj.get("is_active").getAsBoolean());
+                cs.setBoolean(1, obj.get("isActive").getAsBoolean());
                 cs.setString(2, obj.get("rpid").getAsString());
                 cs.execute();
             } catch (SQLException e) {

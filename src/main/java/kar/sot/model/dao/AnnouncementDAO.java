@@ -151,11 +151,11 @@ public class AnnouncementDAO implements AnnouncementDAOInterface<JSONArray> {
             try {
                 cs = StatementCreator.create(sql);
                 cs.setString(1, obj.get("aid").getAsString());
-                cs.setString(2, obj.get("lid").getAsString());
+                cs.setString(2, "L1");
                 cs.setString(3, obj.get("title").getAsString());
                 cs.setString(4, obj.get("content").getAsString());
                 cs.setTimestamp(5, Timestamp.valueOf(obj.get("date").getAsString()));
-
+                cs.execute();
             } catch (SQLException ex) {
                 ex.printStackTrace();
             } catch (ClassNotFoundException ex) {
@@ -203,11 +203,11 @@ public class AnnouncementDAO implements AnnouncementDAOInterface<JSONArray> {
     public void updateAnnouncementTitle(JsonObject obj) {
         if (obj != null) {
             CallableStatement cs = null;
-            String sql = "UPDATE Announcement SET title = ? WHERE title = ?";
+            String sql = "UPDATE Announcement SET title = ? WHERE aid = ?";
             try {
                 cs = StatementCreator.create(sql);
-                cs.setString(1, obj.get("newTitle").getAsString());
-                cs.setString(2, obj.get("oldTitle").getAsString());
+                cs.setString(1, obj.get("title").getAsString());
+                cs.setString(2, obj.get("aid").getAsString());
                 cs.execute();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -230,11 +230,11 @@ public class AnnouncementDAO implements AnnouncementDAOInterface<JSONArray> {
     public void updateAnnouncementContent(JsonObject obj) {
         if (obj != null) {
             CallableStatement cs = null;
-            String sql = "UPDATE Announcement SET content = ? WHERE title = ?";
+            String sql = "UPDATE Announcement SET content = ? WHERE aid = ?";
             try {
                 cs = StatementCreator.create(sql);
                 cs.setString(1, obj.get("content").getAsString());
-                cs.setString(2, obj.get("title").getAsString());
+                cs.setString(2, obj.get("aid").getAsString());
                 cs.execute();
             } catch (SQLException e) {
                 e.printStackTrace();

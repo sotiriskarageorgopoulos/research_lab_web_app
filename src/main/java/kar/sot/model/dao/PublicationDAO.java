@@ -153,11 +153,9 @@ public class PublicationDAO implements PublicationDAOInterface<JSONArray> {
             while (rs.next()) {
                 JSONObject obj = new JSONObject();
                 String title = rs.getString("title");
-                String pid = rs.getString("pid");
                 int publications = rs.getInt("publications");
                 obj.put("title",title);
                 obj.put("publications",publications);
-                obj.put("pid",pid);
                 arr.put(obj);
             }
         } catch (SQLException e) {

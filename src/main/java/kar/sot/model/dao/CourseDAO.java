@@ -210,11 +210,11 @@ public class CourseDAO implements CourseDAOInterface<JSONArray> {
     public void updateCourseTitle(JsonObject obj) {
         if(obj != null) {
             CallableStatement cs = null;
-            String sql = "UPDATE Course SET title = ? WHERE title = ?";
+            String sql = "UPDATE Course SET title = ? WHERE cid = ?";
             try {
                 cs = StatementCreator.create(sql);
-                cs.setString(2,obj.get("oldTitle").getAsString());
-                cs.setString(1,obj.get("newTitle").getAsString());
+                cs.setString(2,obj.get("cid").getAsString());
+                cs.setString(1,obj.get("title").getAsString());
                 cs.execute();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();

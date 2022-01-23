@@ -116,6 +116,7 @@ public class LabDAO implements LabDAOInterface<JSONArray> {
                 cs.setString(4,obj.get("image").getAsString());
                 cs.setString(5,obj.get("university").getAsString());
                 cs.setString(6,obj.get("webPage").getAsString());
+                cs.execute();
             } catch (SQLException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
@@ -264,7 +265,7 @@ public class LabDAO implements LabDAOInterface<JSONArray> {
             String sql = "UPDATE Lab SET web_page = ? WHERE lid = ?";
             try {
                 cs = StatementCreator.create(sql);
-                cs.setString(1,obj.get("web_page").getAsString());
+                cs.setString(1,obj.get("webPage").getAsString());
                 cs.setString(2,obj.get("lid").getAsString());
                 cs.execute();
             } catch (SQLException e) {
