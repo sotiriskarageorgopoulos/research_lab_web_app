@@ -29,10 +29,13 @@ import {
     academicConferenceColumns
 } from './tableColumns';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 
 const Admin = () => {
     const dispatch = useDispatch()
+    const authPayload = useSelector(state => state.auth.value)
+    const {isAuth} = authPayload
     dispatch(setComponentType({componentType: 'admin'}))
     const [choice, setChoice] = useState("");
     const [tableDetails, setTableDetails] = useState({
@@ -114,49 +117,62 @@ const Admin = () => {
     marginLeft: "5%"
   }
    
+    if(isAuth === true) {
+      return (
+      <div className="container-fluid admin-container">
+          <h1 className="text-center">Tables</h1>
+          <div className="row mt-3 mb-3">
+              <div className="col-sm-4"></div>
+              <div className="col-sm-4">
+                          <FormControl
+                              fullWidth
+                              onClick={handleChoice}
+                              onChange={handleChoice}
+                              style={{
+                              margin: "5% auto 5% auto"
+                          }}>
+                              <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                                  Table
+                              </InputLabel>
+                              <NativeSelect
+                                  inputProps={{
+                                  name: 'table',
+                                  id: 'uncontrolled-native'
+                              }}>
+                                  <option>Select...</option>
+                                  {choices.map((c,i) => {
+                                      return <option key={i} value={c.title}>{c.title}</option>
+                                  })}
+                              </NativeSelect>
+                              <div className="text-center mt-3">
+                                <Button onClick={getData} variant="contained" style={submitBtnStyle}>Show table</Button>
+                              </div>
+                          </FormControl>
+              </div>
+              <div className="col-sm-4"></div>
+          </div>
+          <div className="row mt-3 mb-3">
+              <div className="col-sm-1">
+              </div>
+              <div className="col-sm-10">
+                  {tableDetails.data.length > 0 ? <DBTable columns={tableDetails.columns} rows={tableDetails.data}/> :""}
+              </div>
+              <div className="col-sm-1">
+              </div>
+          </div>
+      </div>)
+    } 
     return (
-    <div className="container-fluid admin-container">
-        <h1 className="text-center">Tables</h1>
-        <div className="row mt-3 mb-3">
-            <div className="col-sm-4"></div>
-            <div className="col-sm-4">
-                        <FormControl
-                            fullWidth
-                            onClick={handleChoice}
-                            onChange={handleChoice}
-                            style={{
-                            margin: "5% auto 5% auto"
-                        }}>
-                            <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                                Table
-                            </InputLabel>
-                            <NativeSelect
-                                inputProps={{
-                                name: 'table',
-                                id: 'uncontrolled-native'
-                            }}>
-                                <option>Select...</option>
-                                {choices.map((c,i) => {
-                                    return <option key={i} value={c.title}>{c.title}</option>
-                                })}
-                            </NativeSelect>
-                            <div className="text-center mt-3">
-                              <Button onClick={getData} variant="contained" style={submitBtnStyle}>Show table</Button>
-                            </div>
-                        </FormControl>
-            </div>
-            <div className="col-sm-4"></div>
+      <div className="container-fluid access-denied-container">
+        <div className="row">
+          <div className="col-sm-4"></div>
+          <div className="col-sm-4">
+            <p className="access-denied">The access denied...</p>
+          </div>
+          <div className="col-sm-4"></div>
         </div>
-        <div className="row mt-3 mb-3">
-            <div className="col-sm-1">
-            </div>
-            <div className="col-sm-10">
-                {tableDetails.data.length > 0 ? <DBTable columns={tableDetails.columns} rows={tableDetails.data}/> :""}
-            </div>
-            <div className="col-sm-1">
-            </div>
-        </div>
-    </div>)
+      </div>
+    )
 }
 
 

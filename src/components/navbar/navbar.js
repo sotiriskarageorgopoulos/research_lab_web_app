@@ -10,8 +10,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+import { setAuth } from '../../redux/auth';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const navbarPayload = useSelector(state => state.navbar.value)
@@ -79,6 +82,8 @@ const Navbar = () => {
 const NavbarSetUp = ({pages}) => {
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -87,6 +92,12 @@ const NavbarSetUp = ({pages}) => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
+  const logout = () => {
+    setAnchorElNav(null);
+    dispatch(setAuth(false))
+    navigate('/')
+  }
   
   return(
   <AppBar className="app-bar-style">
@@ -131,11 +142,20 @@ const NavbarSetUp = ({pages}) => {
             >
               {pages
               .filter(p => p.name !== 'Research Laboratory')
-              .map((page) => (
-                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center"><Link className="link" to={page.path}>{page.name}</Link></Typography>
-                </MenuItem>
-              ))}
+              .map((page) =>{
+                if(page.name === 'Logout'){
+                  return (
+                    <MenuItem key={page.name} onClick={logout}>
+                      <Typography textAlign="center"><Link className="link" to={page.path}>{page.name}</Link></Typography>
+                    </MenuItem>
+                  )
+                }
+                return (
+                  <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center"><Link className="link" to={page.path}>{page.name}</Link></Typography>
+                  </MenuItem>
+                )
+              } )}
             </Menu>
           </Box>
           <Typography

@@ -8,6 +8,7 @@ import NativeSelect from '@mui/material/NativeSelect';
 import {useDispatch} from 'react-redux';
 import {setComponentType} from '../../redux/navbars';
 import {choices} from './choices.js'
+import { useSelector } from 'react-redux';
 import axios from 'axios'
 
 const InsertRows = () => {
@@ -20,6 +21,8 @@ const InsertRows = () => {
 
     const dispatch = useDispatch()
     dispatch(setComponentType({componentType: 'admin'}))
+    const authPayload = useSelector(state => state.auth.value)
+    const {isAuth} = authPayload
 
     const [choice, setChoice] = useState({
                                             title: '',
@@ -53,53 +56,67 @@ const InsertRows = () => {
        setDisplay(true)
     }
    
+    if(isAuth === true) {
+        return (
+            <div className="container-fluid insert-rows-container">
+                <div className="row mt-3 mb-3">
+                    <div className="col-sm-4">
+                    </div>
+                    <div className="col-sm-4">
+                        <form className="forms-style">
+                            <h1 className="text-center">Tables</h1>
+                            <FormControl
+                                fullWidth
+                                style={{
+                                margin: "5% auto 5% auto"
+                                }}
+                                onClick={handleChoice}
+                                onChange={handleChoice}
+                            >
+                                <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                                    choose
+                                </InputLabel>
+                                <NativeSelect
+                                    inputProps={{
+                                    name: 'choice',
+                                    id: 'uncontrolled-native'
+                                }}>
+                                    <option>Select...</option>
+                                    {choices.map((c,i) => {
+                                        return <option key={i} value={c.title}>{c.title}</option>
+                                    })}
+                                </NativeSelect>
+                            </FormControl>
+                            <div className="text-center">
+                                <Button onClick={submitChoice} variant="contained" style={submitBtnStyle}>Submit</Button>
+                            </div>
+                        </form>
+                    </div>
+                    <div className="col-sm-4">
+                    </div>
+                </div>
+                <div className="row mt-3 mb-3">
+                    <div className="col-sm-4">
+                    </div>
+                    <div className="col-sm-4">
+                    {display ? <InsertForm {...choice}/>: ""}  
+                    </div>
+                    <div className="col-sm-4">
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
     return (
-        <div className="container-fluid insert-rows-container">
-            <div className="row mt-3 mb-3">
-                <div className="col-sm-4">
-                </div>
-                <div className="col-sm-4">
-                    <form className="forms-style">
-                        <h1 className="text-center">Tables</h1>
-                        <FormControl
-                            fullWidth
-                            style={{
-                             margin: "5% auto 5% auto"
-                            }}
-                            onClick={handleChoice}
-                            onChange={handleChoice}
-                        >
-                            <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                                choose
-                            </InputLabel>
-                            <NativeSelect
-                                inputProps={{
-                                name: 'choice',
-                                id: 'uncontrolled-native'
-                            }}>
-                                <option>Select...</option>
-                                {choices.map((c,i) => {
-                                    return <option key={i} value={c.title}>{c.title}</option>
-                                })}
-                            </NativeSelect>
-                        </FormControl>
-                        <div className="text-center">
-                            <Button onClick={submitChoice} variant="contained" style={submitBtnStyle}>Submit</Button>
-                        </div>
-                    </form>
-                </div>
-                <div className="col-sm-4">
-                </div>
+        <div className="container-fluid access-denied-container">
+          <div className="row">
+            <div className="col-sm-4"></div>
+            <div className="col-sm-4">
+              <p className="access-denied">The access denied...</p>
             </div>
-            <div className="row mt-3 mb-3">
-                <div className="col-sm-4">
-                </div>
-                <div className="col-sm-4">
-                  {display ? <InsertForm {...choice}/>: ""}  
-                </div>
-                <div className="col-sm-4">
-                </div>
-            </div>
+            <div className="col-sm-4"></div>
+          </div>
         </div>
     )
 }

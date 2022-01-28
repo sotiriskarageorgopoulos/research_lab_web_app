@@ -6,6 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 import {useDispatch} from 'react-redux';
 import {setComponentType} from '../../redux/navbars';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 const DeleteRows = () => {
@@ -18,6 +19,8 @@ const DeleteRows = () => {
 
     const dispatch = useDispatch()
     dispatch(setComponentType({componentType: 'admin'}))
+    const authPayload = useSelector(state => state.auth.value)
+    const {isAuth} = authPayload
 
     const [formData,setFormData] = useState({
         title:'',
@@ -121,51 +124,65 @@ const DeleteRows = () => {
         })
     }
 
-    return (
-        <div className="container-fluid delete-container">
-            <div className="row mb-3">
-                <div className="col-sm-4">
-                </div>
-                <div className="col-sm-4">
-                    <form className="forms-style">
-                        <h1 className="text-center">Tables</h1>
-                        <FormControl
-                            fullWidth
-                            onChange={handleChoice}
-                            onClick={handleChoice}
-                            style={{
-                            margin: "5% auto 5% auto"
-                        }}>
-                            <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                                table
-                            </InputLabel>
-                            <NativeSelect
-                                inputProps={{
-                                name: 'j_title'
+    if(isAuth === true) {
+        return (
+            <div className="container-fluid delete-container">
+                <div className="row mb-3">
+                    <div className="col-sm-4">
+                    </div>
+                    <div className="col-sm-4">
+                        <form className="forms-style">
+                            <h1 className="text-center">Tables</h1>
+                            <FormControl
+                                fullWidth
+                                onChange={handleChoice}
+                                onClick={handleChoice}
+                                style={{
+                                margin: "5% auto 5% auto"
                             }}>
-                                <option>Select...</option>
-                                {choices.map((c,i) => {
-                                    return <option key={i} value={c.title}>{c.title}</option>
-                                })}
-                            </NativeSelect>
-                        </FormControl>
-                        <div className="text-center">
-                            <Button onClick={getFormData} variant="contained" style={submitBtnStyle}>Submit</Button>
-                        </div>
-                    </form>
+                                <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                                    table
+                                </InputLabel>
+                                <NativeSelect
+                                    inputProps={{
+                                    name: 'j_title'
+                                }}>
+                                    <option>Select...</option>
+                                    {choices.map((c,i) => {
+                                        return <option key={i} value={c.title}>{c.title}</option>
+                                    })}
+                                </NativeSelect>
+                            </FormControl>
+                            <div className="text-center">
+                                <Button onClick={getFormData} variant="contained" style={submitBtnStyle}>Submit</Button>
+                            </div>
+                        </form>
+                    </div>
+                    <div className="col-sm-4">
+                    </div>
                 </div>
-                <div className="col-sm-4">
+                <div className="row mt-3 mb-3">
+                    <div className="col-sm-4">
+                    </div>
+                    <div className="col-sm-4">
+                        {formData.data.length > 0 ? <DelForm submitBtnStyle={submitBtnStyle} {...formData}/>: ""}
+                    </div>
+                    <div className="col-sm-4">
+                    </div>
                 </div>
             </div>
-            <div className="row mt-3 mb-3">
-                <div className="col-sm-4">
-                </div>
-                <div className="col-sm-4">
-                    {formData.data.length > 0 ? <DelForm submitBtnStyle={submitBtnStyle} {...formData}/>: ""}
-                </div>
-                <div className="col-sm-4">
-                </div>
+        )
+    }
+
+    return (
+        <div className="container-fluid access-denied-container">
+          <div className="row">
+            <div className="col-sm-4"></div>
+            <div className="col-sm-4">
+              <p className="access-denied">The access denied...</p>
             </div>
+            <div className="col-sm-4"></div>
+          </div>
         </div>
     )
 }
@@ -204,7 +221,7 @@ const DelForm = ({submitBtnStyle,title, data, delEndpoint,pk,selectShow}) => {
                 }}>
                     <option>Select...</option>
                     {data.map(d => {
-                        if(selectShow.length == 2) {
+                        if(selectShow.length === 2) {
                             let name = selectShow[0]
                             let surname = selectShow[1]
                             return <option key={d[pk]} value={d[pk]}>{d[name]} {d[surname]}</option>

@@ -6,10 +6,25 @@
     color: var(--clr-primary-5);
 }
 
+.access-denied-container {
+    margin-top: 10%;
+    margin-bottom: 20%;
+}
+
 .forms-style {
     width: 100%;
     margin: 0% auto 5% auto;
     display: flex;
     flex-flow: column nowrap;
     padding: 2%;
+}
+
+.access-denied {
+    margin-top: 10%;
+    margin-bottom: 20%;
+    background-color: var(--clr-primary-5);
+    color: var(--clr-white);
+    padding: 2%;
+    border: 2px solid var(--clr-primary-3);
+    border-radius: var(--radius);
 }

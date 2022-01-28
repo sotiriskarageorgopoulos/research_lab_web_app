@@ -5,3 +5,18 @@
     margin-bottom: 20%;
     color: var(--clr-primary-5);
 }
+
+.access-denied-container {
+    margin-top: 10%;
+    margin-bottom: 20%;
+}
+
+.access-denied {
+    margin-top: 10%;
+    margin-bottom: 20%;
+    background-color: var(--clr-primary-5);
+    color: var(--clr-white);
+    padding: 2%;
+    border: 2px solid var(--clr-primary-3);
+    border-radius: var(--radius);
+}

@@ -4,6 +4,7 @@ import { setComponentType } from '../../redux/navbars';
 import TextField from '@material-ui/core/TextField';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import { setAuth } from '../../redux/auth';
 import './login.css';
 
 const Login = () => {
@@ -28,7 +29,8 @@ const Login = () => {
    const authAdmin = (event) => {
        event.preventDefault()
        if(admin.email === 'admin@domain.com' && admin.password === '123') {
-           navigate('/admin')
+            dispatch(setAuth({isAuth: true}))
+            navigate('/admin')
        }
    } 
 

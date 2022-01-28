@@ -4,12 +4,14 @@ import App from './routes/routes';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import navbarReducer from './redux/navbars';
+import authReducer from './redux/auth';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const store = configureStore({
   reducer: {
-    navbar: navbarReducer 
+    navbar: navbarReducer,
+    auth: authReducer
   }
 })
 
