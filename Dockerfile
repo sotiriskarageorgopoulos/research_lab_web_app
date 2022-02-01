@@ -1,5 +1,6 @@
 FROM node:alpine
-WORKDIR /src
+MAINTAINER Sotirios Karageorgopoulos <sotiriskarageorgopoulos@gmail.com>
+WORKDIR /app
 COPY package.json ./
 COPY package-lock.json ./
 COPY ./ ./

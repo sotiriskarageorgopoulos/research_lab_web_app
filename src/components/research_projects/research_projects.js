@@ -132,7 +132,7 @@ const ResearchProject = () => {
     }
 
     const handleAcademicId = (event) => {
-        let academicId = event.target.values
+        let academicId = event.target.value
         setAcademicId(academicId)
     }
 
@@ -194,12 +194,12 @@ const ResearchProject = () => {
             </form>
             <form className="forms-style">
                 <div className="text-center">
-                    <Button onClick={getProjectWithMaxIncome} variant="contained" style={queryBtn}>research project with min income</Button>
+                    <Button onClick={getProjectWithMinIncome} variant="contained" style={queryBtn}>research project with min income</Button>
                 </div>
             </form>
             <form className="forms-style">
                 <div className="text-center">
-                    <Button onClick={getProjectWithMinIncome} variant="contained" style={queryBtn}>research project with max income</Button>
+                    <Button onClick={getProjectWithMaxIncome} variant="contained" style={queryBtn}>research project with max income</Button>
                 </div>
             </form>
             <form className="forms-style">
