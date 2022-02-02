@@ -179,7 +179,6 @@ const InsertForm = (choice) => {
     }
 
     const insertRow = () => {
-        console.log(formValues)
         axios.post(choice.endpoint,formValues)
     }
 

@@ -196,11 +196,9 @@ const UpdateInput = ({id,pk,updEndpoint,inputType,attr}) => {
     }
 
     const updateRow = () => {
-        console.log(attr)
         if(value !== "") {
             axios.put(updEndpoint,{[pk]:id,[attr]:value})
             console.log({[pk]:id,[attr]:value})
-            window.location.reload(false)
         }
     }
 

@@ -198,7 +198,6 @@ const DelForm = ({submitBtnStyle,title, data, delEndpoint,pk,selectShow}) => {
     const deleteRow = () => {
         let endpoint = delEndpoint.concat(delId)
         axios.delete(endpoint)
-        window.location.reload(false)
     }
 
     return (
